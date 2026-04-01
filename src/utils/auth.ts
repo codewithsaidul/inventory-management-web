@@ -6,7 +6,7 @@ export const isAuthRoute = (pathname: string) => {
 
 export const getDefaultDashboardRoute = (role: UserRole): string => {
   if (role === UserRole.SUPER_ADMIN) {
-    return "/management/dashboard";
+    return "/dashboard";
   }
 
   return "/auth/login";

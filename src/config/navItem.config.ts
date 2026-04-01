@@ -1,7 +1,6 @@
 import { NavSection } from "@/types/dashboard.types";
 import { UserRole } from "@/types/user.types";
 import { getDefaultDashboardRoute } from "@/utils/auth";
-import { User } from "lucide-react";
 
 export const getCommonNavItems = (role: UserRole): NavSection[] => {
   const defaultDashboard = getDefaultDashboardRoute(role);
@@ -26,25 +25,25 @@ export const adminNavItems: NavSection[] = [
     items: [
       {
         title: "Orders",
-        href: "/management/dashboard/orders",
+        href: "/dashboard/orders",
         icon: "ShoppingCart",
         roles: [UserRole.SUPER_ADMIN],
       },
       {
         title: "Products",
-        href: "/management/dashboard/products",
+        href: "/dashboard/products",
         icon: "Box",
         roles: [UserRole.SUPER_ADMIN],
       },
       {
         title: "Activity Tracking",
-        href: "/management/dashboard/activity-tracking",
+        href: "/dashboard/activity-tracking",
         icon: "SquareActivity",
         roles: [UserRole.SUPER_ADMIN],
       },
       {
         title: "Restock Queues",
-        href: "/management/dashboard/restock-queues",
+        href: "/dashboard/restock-queues",
         icon: "ListOrdered ",
         roles: [UserRole.SUPER_ADMIN],
       },

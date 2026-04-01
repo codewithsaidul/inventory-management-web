@@ -35,7 +35,7 @@ export async function proxy(request: NextRequest) {
   if (isAuth) {
     if (userRole === UserRole.SUPER_ADMIN) {
       return NextResponse.redirect(
-        new URL("/management/dashboard", request.url)
+        new URL("/dashboard", request.url)
       );
     }
 
