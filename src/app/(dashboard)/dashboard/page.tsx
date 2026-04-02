@@ -2,7 +2,7 @@
 export default function page () {
   return (
     <div>
-       <h1>This is page Component</h1>
+       <h1>This is a Dashboard Area</h1>
    </div>
   );
 };

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const loginSchema = z.object({
+export const loginValidationZodSchema = z.object({
   email: z
     .string({ message: "Email is required" })
     .email({ message: "Provide a valid email address" }),
