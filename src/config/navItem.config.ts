@@ -24,27 +24,33 @@ export const adminNavItems: NavSection[] = [
     title: "Inventory Management",
     items: [
       {
-        title: "Orders",
-        href: "/dashboard/orders",
-        icon: "ShoppingCart",
-        roles: [UserRole.SUPER_ADMIN],
-      },
-      {
         title: "Products",
         href: "/dashboard/products",
         icon: "Box",
         roles: [UserRole.SUPER_ADMIN],
       },
       {
-        title: "Activity Tracking",
-        href: "/dashboard/activity-tracking",
-        icon: "SquareActivity",
+        title: "Categories",
+        href: "/dashboard/categories",
+        icon: "Layers",
+        roles: [UserRole.SUPER_ADMIN],
+      },
+      {
+        title: "Orders",
+        href: "/dashboard/orders",
+        icon: "ShoppingCart",
         roles: [UserRole.SUPER_ADMIN],
       },
       {
         title: "Restock Queues",
         href: "/dashboard/restock-queues",
-        icon: "ListOrdered ",
+        icon: "RotateCw",
+        roles: [UserRole.SUPER_ADMIN],
+      },
+      {
+        title: "Activity Logs",
+        href: "/dashboard/activity-logs",
+        icon: "History",
         roles: [UserRole.SUPER_ADMIN],
       },
     ],

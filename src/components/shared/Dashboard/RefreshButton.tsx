@@ -30,6 +30,7 @@ const RefreshButton = ({
       variant={variant}
       onClick={handleRefresh}
       disabled={isPending}
+      className="cursor-pointer"
     >
       <RefreshCcw
         className={`h-4 w-4 ${isPending ? "animate-spin" : ""} ${

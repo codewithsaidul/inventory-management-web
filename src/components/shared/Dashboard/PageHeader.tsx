@@ -15,7 +15,7 @@ interface ManagementPageHeaderProps {
   children?: React.ReactNode;
 }
 
-const PageHeader = ({
+const ManagementPageHeader = ({
   title,
   description,
   action,
@@ -41,4 +41,4 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default ManagementPageHeader;

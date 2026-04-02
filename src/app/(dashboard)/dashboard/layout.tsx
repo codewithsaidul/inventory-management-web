@@ -3,12 +3,12 @@ import DashboardSidebar from "@/components/modules/dashboard/DashboardSidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Doctor Panel - Health Care | CodeWithSaidul",
+  title: "Inventory Management Dashboard",
   description:
-    "Manage patients, view medical records, and handle consultations efficiently in the Health Care Doctor Panel.",
+    "Manage inventory, view product details, and handle orders efficiently in the Inventory Management Dashboard.",
 };
 
-export default async function DashboardLayout({
+export default async function AdminDashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
