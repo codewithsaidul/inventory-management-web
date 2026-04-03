@@ -34,17 +34,16 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
 
   const confirmDelete = async () => {
     if (!deletingProduct) return;
-
+    const toastId = toast.loading("Deleting...")
     setIsDeleting(true);
     const result = await deleteProduct(deletingProduct._id!);
-    console.log("🚀 ~ confirmDelete ~ result:", result);
     setIsDeleting(false);
 
     if (result.success) {
-      toast.success(result.message || "Product deleted successfully");
+      toast.success(result.message || "Product deleted successfully", { id: toastId });
       setDeletingProduct(null);
     } else {
-      toast.error(result.message || "Failed to delete user");
+      toast.error(result.message || "Failed to delete user", { id: toastId });
     }
   };
 
@@ -72,13 +71,14 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
         isOpen={!!editingProduct}
         onClose={handleCloseEdit}
         product={editingProduct}
+
       />
 
       <DeleteConfirmationDialog
         open={!!deletingProduct}
         onOpenChange={(open) => !open && setDeletingProduct(null)}
         onConfirm={confirmDelete}
-        title="Delete Event"
+        title="Delete Product"
         description={`Are you sure you want to delete ${deletingProduct?.name}? This action cannot be undone.`}
         isDeleting={isDeleting}
       />
