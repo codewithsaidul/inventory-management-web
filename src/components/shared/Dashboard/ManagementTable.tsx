@@ -89,19 +89,19 @@ function ManagementTable<T>({
                     <TableCell>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
+                          <Button variant="ghost" size="icon" className="cursor-pointer">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           {onView && (
-                            <DropdownMenuItem onClick={() => onView(item)}>
+                            <DropdownMenuItem onClick={() => onView(item)} className="cursor-pointer">
                               <Eye className="mr-2 h-4 w-4" />
                               View
                             </DropdownMenuItem>
                           )}
                           {onEdit && (
-                            <DropdownMenuItem onClick={() => onEdit(item)}>
+                            <DropdownMenuItem onClick={() => onEdit(item)} className="cursor-pointer">
                               <Edit className="mr-2 h-4 w-4" />
                               Edit
                             </DropdownMenuItem>
@@ -109,7 +109,7 @@ function ManagementTable<T>({
                           {onDelete && (
                             <DropdownMenuItem
                               onClick={() => onDelete(item)}
-                              className="text-destructive"
+                              className="text-destructive cursor-pointer"
                             >
                               <Trash className="mr-2 h-4 w-4" />
                               Delete

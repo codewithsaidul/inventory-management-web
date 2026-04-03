@@ -37,19 +37,16 @@ export function CategoryFormModal({
   onClose,
   category,
 }: CategoryFormModalProps) {
-  // ক্যাটাগরি থাকলে আপডেট অ্যাকশন, না থাকলে ক্রিয়েট অ্যাকশন
   const formActionHandler = category 
     ? updateCategory.bind(null, category._id!) 
     : createCategory;
 
   const [state, formAction, isPending] = useActionState(formActionHandler, null);
 
-  // ইনিশিয়াল স্টেট সরাসরি প্রপস থেকে সেট করা হচ্ছে (useEffect এরর এড়াতে)
   const [name, setName] = useState(category?.name || "");
   const [description, setDescription] = useState(category?.description || "");
   const [isActive, setIsActive] = useState(category ? String(category.isActive) : "true");
 
-  // সাকসেস হ্যান্ডলিং
 
   useEffect(() => {
     if (state && state.success) {
@@ -61,7 +58,6 @@ export function CategoryFormModal({
   }, [state, onClose, category]);
 
 
-    console.log("🚀 ~ CategoryFormModal ~ state:", state)
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-lg">

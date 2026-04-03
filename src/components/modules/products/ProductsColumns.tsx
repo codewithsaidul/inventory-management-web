@@ -9,7 +9,7 @@ export const productsColumns: Column<IProduct>[] = [
     header: "Name",
     accessor: (product) => (
       <div>
-        <div className="font-medium">{product?.name || "N/A"}</div>
+        <div className="font-medium capitalize">{product?.name || "N/A"}</div>
         <div className="text-xs text-muted-foreground">{product?.category?.name}</div>
       </div>
     ),

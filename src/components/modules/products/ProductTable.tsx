@@ -2,27 +2,23 @@
 
 import ManagementTable from "@/components/shared/Dashboard/ManagementTable";
 import { IProduct } from "@/types/product.types";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { productsColumns  } from "./ProductsColumns";
+import { useState } from "react";
+import { ProductFormModal } from "./ProductFormModal";
+import { productsColumns } from "./ProductsColumns";
 import ProductViewDetailDialog from "./ProductViewModal";
-
+import toast from "react-hot-toast";
+import { deleteProduct } from "@/services/product/productManagement";
+import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
 
 interface ProductsTableProps {
   products: IProduct[];
 }
 
 const ProductsTable = ({ products }: ProductsTableProps) => {
-  const router = useRouter();
-  const [, startTransition] = useTransition();
   const [viewingProduct, setViewingProduct] = useState<IProduct | null>(null);
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
-
-  const handleRefresh = () => {
-    startTransition(() => {
-      router.refresh();
-    });
-  };
+  const [deletingProduct, setDeletingProduct] = useState<IProduct | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleView = (product: IProduct) => {
     setViewingProduct(product);
@@ -32,6 +28,26 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
     setEditingProduct(product);
   };
 
+  const handleCloseEdit = () => {
+    setEditingProduct(null);
+  };
+
+  const confirmDelete = async () => {
+    if (!deletingProduct) return;
+
+    setIsDeleting(true);
+    const result = await deleteProduct(deletingProduct._id!);
+    console.log("🚀 ~ confirmDelete ~ result:", result);
+    setIsDeleting(false);
+
+    if (result.success) {
+      toast.success(result.message || "Product deleted successfully");
+      setDeletingProduct(null);
+    } else {
+      toast.error(result.message || "Failed to delete user");
+    }
+  };
+
   return (
     <>
       <ManagementTable
@@ -39,7 +55,7 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
         columns={productsColumns}
         onView={handleView}
         onEdit={handleEdit}
-        // Using _id based on your IProduct interface
+        onDelete={(product) => setDeletingProduct(product)}
         getRowKey={(product) => product._id!}
         emptyMessage="No products found"
       />
@@ -51,16 +67,21 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
         product={viewingProduct}
       />
 
-      {/* Edit Product Dialog */}
-      {/* <EditProductDialog
-        open={!!editingProduct}
-        onClose={() => setEditingProduct(null)}
+      <ProductFormModal
+        key={editingProduct?._id || "new-product"}
+        isOpen={!!editingProduct}
+        onClose={handleCloseEdit}
         product={editingProduct}
-        onSuccess={() => {
-          setEditingProduct(null);
-          handleRefresh();
-        }}
-      /> */}
+      />
+
+      <DeleteConfirmationDialog
+        open={!!deletingProduct}
+        onOpenChange={(open) => !open && setDeletingProduct(null)}
+        onConfirm={confirmDelete}
+        title="Delete Event"
+        description={`Are you sure you want to delete ${deletingProduct?.name}? This action cannot be undone.`}
+        isDeleting={isDeleting}
+      />
     </>
   );
 };

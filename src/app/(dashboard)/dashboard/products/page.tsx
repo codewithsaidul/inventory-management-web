@@ -1,11 +1,11 @@
 
 import ProductsFilter from "@/components/modules/products/ProductsFilter";
+import ProductsPageHeader from "@/components/modules/products/ProductsPageHeader";
 import ProductsTable from "@/components/modules/products/ProductTable";
-import ManagementPageHeader from "@/components/shared/Dashboard/PageHeader";
-import TablePagination from "@/components/shared/TablePagination";
 import { TableSkeleton } from "@/components/shared/Dashboard/TableSkeleton";
-import { queryStringFormatter } from "@/utils/formatter";
+import TablePagination from "@/components/shared/TablePagination";
 import { getProducts } from "@/services/product/productManagement";
+import { queryStringFormatter } from "@/utils/formatter";
 import { Suspense } from "react";
 
 const ProductsManagementPage = async ({
@@ -22,10 +22,7 @@ const ProductsManagementPage = async ({
 
   return (
     <div className="space-y-6">
-      <ManagementPageHeader
-        title="Products Management"
-        description="Monitor inventory levels, pricing, and product status"
-      />
+      <ProductsPageHeader />
 
       <ProductsFilter />
 

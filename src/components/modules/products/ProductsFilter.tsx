@@ -26,9 +26,6 @@ const ProductsFilter = () => {
           ]}
         />
 
-        {/* Category Filter (Optional but recommended based on your interface) */}
-        <SearchFilter paramName="category" placeholder="Category" />
-
         {/* Name Search - Only searching by product name as requested */}
         <SearchFilter paramName="searchTerm" placeholder="Search by name..." />
       </div>

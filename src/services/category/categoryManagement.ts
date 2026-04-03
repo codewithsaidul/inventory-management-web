@@ -96,6 +96,36 @@ export async function getCategories(queryString?: string) {
   }
 }
 
+export async function getActiveCategories(queryString?: string) {
+  try {
+    const searchParams = new URLSearchParams(queryString);
+    const page = searchParams.get("page") || "1";
+    const searchTerm = searchParams.get("searchTerm") || "all";
+    const response = await Fetcher.get(
+      `/categories/active${queryString ? `?${queryString}` : ""}`,
+      {
+        next: {
+          tags: [
+            "categories-list",
+            `categories-page-${page}`,
+            `categories-search-${searchTerm}`,
+          ],
+          revalidate: 180,
+        },
+      },
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    const err = error as IApiErrorResponse;
+    return {
+      success: false,
+      message: err.data.message || "Something went wrong",
+    };
+  }
+}
+
 export async function getCategorieById(id: string) {
   try {
     const response = await Fetcher.get(`/categories/${id}`, {
