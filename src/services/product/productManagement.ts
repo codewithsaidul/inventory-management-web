@@ -53,6 +53,9 @@ export async function createProduct(_prevState: any, formData: FormData) {
       revalidateTag("products-list", { expire: 0 });
       revalidateTag("products-page-1", { expire: 0 });
       revalidateTag("products-search-all", { expire: 0 });
+      revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -163,6 +166,9 @@ export async function updateProduct(
       revalidateTag("products-list", { expire: 0 });
       revalidateTag("products-page-1", { expire: 0 });
       revalidateTag("products-search-all", { expire: 0 });
+      revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -185,6 +191,9 @@ export async function deleteProduct(id: string) {
       revalidateTag(`products-${id}`, { expire: 0 });
       revalidateTag("products-page-1", { expire: 0 });
       revalidateTag("products-search-all", { expire: 0 });
+      revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
     return result;
   } catch (error) {

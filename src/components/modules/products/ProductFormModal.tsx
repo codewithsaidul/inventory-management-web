@@ -28,6 +28,7 @@ import {
   updateProduct,
 } from "@/services/product/productManagement";
 import { useCategoryDropdown } from "@/hooks/useCategoryDropdown";
+import { handleNumberChange, handlePriceChange } from "@/utils/inputFilters";
 
 interface ProductFormModalProps {
   isOpen: boolean;
@@ -67,19 +68,7 @@ export function ProductFormModal({
     }
   }, [state, onClose, product]);
 
-  const handleNumberChange = (value: string, setter: (val: string) => void) => {
-    const regex = /^[0-9]*$/;
-    if (regex.test(value)) {
-      setter(value);
-    }
-  };
 
-  const handlePriceChange = (value: string) => {
-    const regex = /^\d*\.?\d*$/;
-    if (regex.test(value)) {
-      setPrice(value);
-    }
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -132,7 +121,7 @@ export function ProductFormModal({
                   type="text"
                   inputMode="decimal"
                   value={price}
-                  onChange={(e) => handlePriceChange(e.target.value)}
+                  onChange={(e) => handlePriceChange(e.target.value, setPrice)}
                   placeholder="0"
                 />
                 <InputFieldError field="price" state={state} />

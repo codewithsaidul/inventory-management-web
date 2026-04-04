@@ -32,7 +32,7 @@ const ProductsManagementPage = async ({
 
       <TablePagination
         currentPage={response?.meta?.page || 1}
-        totalPages={response?.meta?.totalPage || 1}
+        totalPages={response?.meta?.totalPages || 1}
       />
     </div>
   );

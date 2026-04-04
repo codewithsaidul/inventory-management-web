@@ -53,6 +53,9 @@ export async function createCategory(_prevState: any, formData: FormData) {
       revalidateTag("categories-list", { expire: 0 });
       revalidateTag("categories-page-1", { expire: 0 });
       revalidateTag("categories-search-all", { expire: 0 });
+      revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -190,13 +193,13 @@ export async function updateCategory(
     const result = await response.json();
 
     if (result.success) {
-      // স্পেসিফিক আইডি এবং লিস্টের ক্যাশ রিভ্যালিডেট করা হচ্ছে
       revalidateTag(`categories-${id}`, { expire: 0 });
       revalidateTag("categories-list", { expire: 0 });
-
-      // অপশনাল: যদি সার্চ রেজাল্টে ইফেক্ট পড়ে তাই এগুলোও রিভ্যালিডেট করা ভালো
       revalidateTag("categories-page-1", { expire: 0 });
       revalidateTag("categories-search-all", { expire: 0 });
+            revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -219,6 +222,9 @@ export async function deleteCategory(id: string) {
       revalidateTag(`categories-${id}`, { expire: 0 });
       revalidateTag("categories-page-1", { expire: 0 });
       revalidateTag("categories-search-all", { expire: 0 });
+      revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
     return result;
   } catch (error) {

@@ -37,6 +37,9 @@ export async function createOrder(payload: IOrderCreatePayload) {
       revalidateTag("products-list", { expire: 0 });
       revalidateTag("products-page-1", { expire: 0 });
       revalidateTag("products-search-all", { expire: 0 });
+            revalidateTag("activitiLogs-list", { expire: 0 });
+      revalidateTag("activitiLogs-page-1", { expire: 0 });
+      revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -109,10 +112,12 @@ export async function updateOrderStatus(
     const result = await response.json();
 
     if (result.success) {
-      // Reload issue fix korar jonno tag gulo plural e thik kora hoise
       revalidateTag("orders-list", { expire: 0 });
       revalidateTag(`orders-${id}`, { expire: 0 });
       revalidateTag("orders-page-1", { expire: 0 });
+            revalidateTag("activitiLogs-list", { expire: 0 });
+            revalidateTag("activitiLogs-page-1", { expire: 0 });
+            revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
 
     return result;
@@ -133,6 +138,9 @@ export async function deleteOrder(id: string) {
     if (result.success) {
       revalidateTag("orders-list", { expire: 0 });
       revalidateTag("orders-page-1", { expire: 0 });
+            revalidateTag("activitiLogs-list", { expire: 0 });
+            revalidateTag("activitiLogs-page-1", { expire: 0 });
+            revalidateTag("activitiLogs-search-all", { expire: 0 });
     }
     return result;
   } catch (error) {
