@@ -56,6 +56,9 @@ export async function createProduct(_prevState: any, formData: FormData) {
       revalidateTag("activitiLogs-list", { expire: 0 });
       revalidateTag("activitiLogs-page-1", { expire: 0 });
       revalidateTag("activitiLogs-search-all", { expire: 0 });
+      revalidateTag("categories-list", { expire: 0 });
+      revalidateTag("categories-page-1", { expire: 0 });
+      revalidateTag("categories-search-all", { expire: 0 });
     }
 
     return result;
@@ -169,9 +172,6 @@ export async function updateProduct(
       revalidateTag("activitiLogs-list", { expire: 0 });
       revalidateTag("activitiLogs-page-1", { expire: 0 });
       revalidateTag("activitiLogs-search-all", { expire: 0 });
-      revalidateTag("categories-list", { expire: 0 });
-      revalidateTag("categories-page-1", { expire: 0 });
-      revalidateTag("categories-search-all", { expire: 0 });
     }
 
     return result;
@@ -197,6 +197,9 @@ export async function deleteProduct(id: string) {
       revalidateTag("activitiLogs-list", { expire: 0 });
       revalidateTag("activitiLogs-page-1", { expire: 0 });
       revalidateTag("activitiLogs-search-all", { expire: 0 });
+      revalidateTag("categories-list", { expire: 0 });
+      revalidateTag("categories-page-1", { expire: 0 });
+      revalidateTag("categories-search-all", { expire: 0 });
     }
     return result;
   } catch (error) {
